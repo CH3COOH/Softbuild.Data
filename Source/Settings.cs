@@ -80,7 +80,14 @@ namespace Softbuild.Data
 #if NETFX_CORE
             value = (T)ApplicationData.Current.LocalSettings.Values[key];
 #elif WINDOWS_PHONE
-            value = (T)IsolatedStorageSettings.ApplicationSettings[key];
+            try
+            {
+                value = (T)IsolatedStorageSettings.ApplicationSettings[key];
+            }
+            catch (System.Collections.Generic.KeyNotFoundException)
+            {
+                value = default(T);
+            }
 #endif
             return value;
         }

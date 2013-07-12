@@ -1,30 +1,51 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using Softbuild.Data;
+using System;
+using System.Collections.Generic;
 
 namespace UnitTestLibrary
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        [TestInitialize]
+        public void Initialize()
         {
-            var hoge = Settings.Get<string>("hoge");
-            Assert.IsNotNull(hoge);
         }
 
         [TestMethod]
-        public void TestMethod2()
+        [TestCategory("取得系")]
+        public void GetTest_1()
         {
-            var hoge = Softbuild.Data.Settings.Get("hoge", "dddddd");
-            Assert.IsNull(hoge);
+            var result = Settings.Get<string>("dummy_key");
+            Assert.IsNull(result);
         }
 
         [TestMethod]
-        public void TestMethod3()
+        [TestCategory("取得系")]
+        public void GetTest_2()
         {
-            var hoge = Settings.Get<bool>("eeee");
-            Assert.IsNotNull(hoge);
+            var result = Softbuild.Data.Settings.Get("dummy_key", "default_value");
+            Assert.IsNotNull(result);
+            Assert.AreEqual<string>(result, "default_value");
+        }
+
+        [TestMethod]
+        [TestCategory("削除系")]
+        public void RemoveTest_1()
+        {
+            var result = Settings.Get<string>("dummy_key_0001");
+            Assert.IsNull(result);
+
+            Settings.Set("dummy_key_0001", "test_value");
+
+            result = Settings.Get<string>("dummy_key_0001");
+            Assert.AreEqual<string>(result, "test_value");
+
+            Settings.Remove("dummy_key_0001");
+
+            result = Settings.Get<string>("dummy_key_0001");
+            Assert.IsNull(result);
         }
     }
 }
