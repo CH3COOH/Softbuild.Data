@@ -2,6 +2,7 @@
 using Softbuild.Data;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace UnitTestLibrary
 {
@@ -28,6 +29,23 @@ namespace UnitTestLibrary
             var result = Softbuild.Data.Settings.Get("dummy_key", "default_value");
             Assert.IsNotNull(result);
             Assert.AreEqual<string>(result, "default_value");
+        }
+
+        [TestMethod]
+        [TestCategory("取得系")]
+        public async Task Save()
+        {
+            var strUri = "ms-appx:///Images/UnitTestSmallLogo.png";
+#if WINDOWS_PHONE
+            strUri = "ms-appx:///Assets/ApplicationIcon.png";
+#endif
+            var uri = new Uri(strUri);
+            var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(uri);
+            using (var strm = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
+            {
+                var result = await Softbuild.Data.StorageExtensions.SaveToPicturesLibraryAsync("hoge.png", strm);
+                Assert.IsNotNull(result);
+            }
         }
 
         [TestMethod]

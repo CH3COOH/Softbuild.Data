@@ -49,10 +49,10 @@ namespace Softbuild.Data
         /// <param name="fileName">拡張子を含むファイル名</param>
         /// <param name="stream">保存するデータのストリーム</param>
         /// <returns>ファイル</returns>
-        public static async Task<StorageFile> SaveToPicturesLibraryAsync(string fileName, IRandomAccessStream stream)
+        public static Task<StorageFile> SaveToPicturesLibraryAsync(string fileName, IRandomAccessStream stream)
         {
             var library = KnownFolders.PicturesLibrary;
-            return await SaveFileAsync(library, fileName, stream);
+            return SaveFileAsync(library, fileName, stream);
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace Softbuild.Data
         /// <param name="stream">保存するデータのストリーム</param>
         /// <returns>ファイル</returns>
         [Obsolete("use SaveFileAsync method.")]
-        public static async Task<StorageFile> SaveToFolderAsync(this IStorageFolder folder, string fileName, IRandomAccessStream stream)
+        public static Task<StorageFile> SaveToFolderAsync(this IStorageFolder folder, string fileName, IRandomAccessStream stream)
         {
-            return await SaveFileAsync(folder, fileName, stream);
+            return SaveFileAsync(folder, fileName, stream);
         }
 
         /// <summary>
