@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softbuild.Data", "Softbuild.Data.WinRT\Softbuild.Data.csproj", "{F29DFB3C-0385-434C-9D26-FD83ABF4ACC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softbuild.Data", "Softbuild.Data.WinRT80\Softbuild.Data.csproj", "{F29DFB3C-0385-434C-9D26-FD83ABF4ACC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLibrary", "Softbuild.Data.WinRT\UnitTestLibrary\UnitTestLibrary.csproj", "{658A7C3D-6A6C-4691-A6F8-43F67E9ADA4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLibrary", "Softbuild.Data.WinRT80\UnitTestLibrary\UnitTestLibrary.csproj", "{658A7C3D-6A6C-4691-A6F8-43F67E9ADA4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
