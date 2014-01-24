@@ -23,7 +23,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if NETFX_CORE
+#if NETFX_CORE && !WINDOWS_PHONE
 using Windows.Storage;
 #elif WINDOWS_PHONE
 using System.IO.IsolatedStorage;
@@ -44,7 +44,7 @@ namespace Softbuild.Data
         /// <param name="value">設定値</param>
         public static void Set<T>(string key, T value)
         {
-#if NETFX_CORE
+#if NETFX_CORE && !WINDOWS_PHONE
             ApplicationData.Current.LocalSettings.Values[key] = value;
 #elif WINDOWS_PHONE
             IsolatedStorageSettings.ApplicationSettings[key] = value;
@@ -60,7 +60,7 @@ namespace Softbuild.Data
         public static bool Contains(string key)
         {
             bool isContains = false;
-#if NETFX_CORE
+#if NETFX_CORE && !WINDOWS_PHONE
             isContains = ApplicationData.Current.LocalSettings.Values.Keys.Contains(key);
 #elif WINDOWS_PHONE
             isContains = IsolatedStorageSettings.ApplicationSettings.Contains(key);
@@ -77,7 +77,7 @@ namespace Softbuild.Data
         public static T Get<T>(string key)
         {
             T value = default(T);
-#if NETFX_CORE
+#if NETFX_CORE && !WINDOWS_PHONE
             value = (T)ApplicationData.Current.LocalSettings.Values[key];
 #elif WINDOWS_PHONE
             try
@@ -115,7 +115,7 @@ namespace Softbuild.Data
         /// <param name="key">設定値に関連付けたキー</param>
         public static void Remove(string key)
         {
-#if NETFX_CORE
+#if NETFX_CORE && !WINDOWS_PHONE
             ApplicationData.Current.LocalSettings.Values.Remove(key);
 #elif WINDOWS_PHONE
             IsolatedStorageSettings.ApplicationSettings.Remove(key);
